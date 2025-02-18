@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html {
+        display: table;
+        margin: auto;
+      }
+      body {
+        margin-top: 40px;
+        background-color: rgb(194, 177, 155);
+      }
+      li {
+        background-color: rgb(225, 205, 176);
+        padding-left: 10px;
+        margin-bottom: 3px;
+        list-style-type: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <lebel>Todo text :</lebel>
+      <input id="todoTextBox" required />
+      <button onclick="saveItem()">Save</button><br />
+    </div>
+
+    <div>
+      <ul id="todoList" onclick="selectItem(event)">
+        <!-- <li>Just test</li>
+            <li>test nummber 2</lsi> -->
+      </ul>
+    </div>
+
+    <div>
+      <button onclick="removeSelectedItem()">Remove Selected</button>
+      <button id="selectButtonID" onclick="selectAllItem()">Select All</button>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
