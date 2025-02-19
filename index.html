@@ -13,14 +13,7 @@
 
       body {
         margin-top: 40px;
-        background-color: rgb(194, 177, 155);
-      }
-
-      #todoList li {
-        background-color: rgb(225, 205, 176);
-        padding-left: 10px;
-        margin-bottom: 5px;
-        list-style-type: none;
+        background-color: lightslategray;
       }
 
       #todoList {
@@ -28,23 +21,58 @@
       }
 
       #todoList li {
+        background-color: rgb(168, 196, 224);
+        padding-left: 10px;
+        margin-bottom: 5px;
+        list-style-type: none;
+        border-radius: 2px;
+
         list-style: none;
         padding-right: 40px;
         position: relative;
+        height: 28px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
       }
 
       #todoList button {
         position: absolute;
         top: 50%;
-        right: -50px;
+        right: 0px;
         transform: translateY(-50%);
+        height: 30px;
+      }
+      input {
+        width: 500px;
+        height: 35px;
+        margin-left: 10px;
+        border-radius: 2pt;
+        border-color: cornflowerblue;
+        border-width: 1pt;
+        margin-top: 20px;
+      }
+      button {
+        height: 28px;
+        border-radius:3px;
+        border-width: 1pt;
+        border-color: cornflowerblue;
       }
     </style>
   </head>
 
   <body>
     <div>
-      <lebel>Todo text :</lebel>
+      <button id="selectButtonID" onclick="selectAllItem()">Select All</button>
+      <button onclick="removeSelectedItem()">Remove Selected</button>
+      <button onclick="showCompletedTask()">Completed Task</button>
+      <button onclick="showRemainingTask()">Remaining Task</button>
+      <button onclick="showAllTask()">Show All</button>
+      <button onclick="deleteCompletedTask()">Remove Completed</button>
+    </div>
+
+    <div>
+      <lebel style="color: whitesmoke">Note :</lebel>
       <input id="todoTextBox" placeholder="Enter your text" required />
       <button onclick="saveItem()">Save</button><br />
     </div>
@@ -52,17 +80,8 @@
     <div>
       <ul id="todoList" onclick="selectItem(event)">
         <!-- <li>Just test</li>
-            <li>test nummber 2</lsi> -->
+        <li>test nummber 2</li> -->
       </ul>
-    </div>
-
-    <div>
-      <button id="selectButtonID" onclick="selectAllItem()">Select All</button>
-      <button onclick="removeSelectedItem()">Remove Selected</button>
-      <button onclick="showCompletedTask()">Completed Task</button>
-      <button onclick="showRemainingTask()">Remaining Task</button>
-      <button onclick="showAllTask()">Show All</button>
-      <button onclick="deleteCompletedTask()">Delete Completed</button>
     </div>
 
     <script src="index.js"></script>

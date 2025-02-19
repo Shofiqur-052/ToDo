@@ -44,9 +44,9 @@ function selectItem(event) {
     if(event.target.value == undefined) return ;
 
     if(event.target.value == 0) {
-        event.target.style.backgroundColor = "lightBlue";
+        event.target.style.backgroundColor = "lightGreen";
     } else {
-        event.target.style.backgroundColor = "rgb(225, 205, 176)";
+        event.target.style.backgroundColor = "rgb(168, 196, 224)";
     }
     event.target.value ^= 1;
 }
@@ -96,7 +96,7 @@ function selectAllItem() {
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 1;
-        items[i].style.backgroundColor = "lightBlue";
+        items[i].style.backgroundColor = "lightGreen";
     }
     let button = document.getElementById("selectButtonID");
     button.value ^= 1;
@@ -118,7 +118,7 @@ function unselectAllItems() {
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 0;
-        items[i].style.backgroundColor = "rgb(225, 205, 176)";
+        items[i].style.backgroundColor = "rgb(168, 196, 224)";
     }
 }
 
