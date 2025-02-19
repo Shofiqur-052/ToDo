@@ -22,7 +22,9 @@ function saveItem () {
 // Create and Add item to the List
 function addList(value) {
     var ul = document.getElementById("todoList");
-    var li = document.createElement("li");         // Creating list item
+    var li = document.createElement("li");
+
+    console.log(ul);
 
     const button = document.createElement("button");
     button.innerHTML = 'Incomplete';
@@ -53,10 +55,6 @@ function selectItem(event) {
 
 // Select IsCompleted Button
 function clickedIsCompletedButton(event) {
-    console.log("Is Completed");
-
-    console.log(event.target.value);
-
     if(event.target.value == 0) {
         event.target.innerHTML = "Completed";
         event.target.style.backgroundColor = "lightGreen";

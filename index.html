@@ -4,71 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-
-    <style>
-      html {
-        display: table;
-        margin: auto;
-      }
-
-      body {
-        margin-top: 40px;
-        background-color: lightslategray;
-      }
-
-      #todoList {
-        position: relative;
-      }
-
-      #todoList li {
-        background-color: rgb(168, 196, 224);
-        padding-left: 10px;
-        margin-bottom: 5px;
-        list-style-type: none;
-        border-radius: 2px;
-
-        list-style: none;
-        padding-right: 40px;
-        position: relative;
-        height: 28px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-      }
-
-      #todoList button {
-        position: absolute;
-        top: 50%;
-        right: 0px;
-        transform: translateY(-50%);
-        height: 30px;
-      }
-      input {
-        width: 500px;
-        height: 35px;
-        margin-left: 10px;
-        border-radius: 2pt;
-        border-color: cornflowerblue;
-        border-width: 1pt;
-        margin-top: 20px;
-      }
-      button {
-        height: 28px;
-        border-radius:3px;
-        border-width: 1pt;
-        border-color: cornflowerblue;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div>
+    <div style="word-spacing: 5px">
       <button id="selectButtonID" onclick="selectAllItem()">Select All</button>
       <button onclick="removeSelectedItem()">Remove Selected</button>
       <button onclick="showCompletedTask()">Completed Task</button>
       <button onclick="showRemainingTask()">Remaining Task</button>
       <button onclick="showAllTask()">Show All</button>
-      <button onclick="deleteCompletedTask()">Remove Completed</button>
+      <button onclick="deleteCompletedTask()">Clear Completed</button>
     </div>
 
     <div>
@@ -79,11 +25,10 @@
 
     <div>
       <ul id="todoList" onclick="selectItem(event)">
-        <!-- <li>Just test</li>
-        <li>test nummber 2</li> -->
+        <!-- <li>Just test</li> -->
       </ul>
     </div>
 
-    <script src="index.js"></script>
+    <script src="todo.js"></script>
   </body>
 </html>
