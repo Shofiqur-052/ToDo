@@ -113,6 +113,8 @@ function selectAllItem() {
 function unselectAllItems() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
+    let button = document.getElementById("selectButtonID");
+    button.innerText = "Select All";
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 0;
@@ -128,6 +130,48 @@ function showCompletedTask() {
     for(let i=items.length-1; i>=0; i--){
         if(items[i].querySelector("button").innerHTML == "Incomplete") {
             items[i].style.display = "none";
+        } else {
+            items[i].style.display = "";
         }
     }
+    unselectAllItems();
+}
+
+// Show All Remaining Task
+function showRemainingTask() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=items.length-1; i>=0; i--){
+        if(items[i].querySelector("button").innerHTML == "Incomplete") {
+            items[i].style.display = "";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
+    unselectAllItems();
+}
+
+// Show All Task
+function showAllTask() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=items.length-1; i>=0; i--){
+        items[i].style.display = ""
+    }
+    unselectAllItems();
+}
+
+// Delete Completed Task
+function deleteCompletedTask() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=items.length-1; i>=0; i--){
+        if(items[i].querySelector("button").innerHTML == "Completed"){
+            items[i].remove();
+        }
+    }
+    unselectAllItems();
 }
