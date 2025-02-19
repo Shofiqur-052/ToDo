@@ -10,15 +10,34 @@
         display: table;
         margin: auto;
       }
+
       body {
         margin-top: 40px;
         background-color: rgb(194, 177, 155);
       }
-      li {
+
+      #todoList li {
         background-color: rgb(225, 205, 176);
         padding-left: 10px;
-        margin-bottom: 3px;
+        margin-bottom: 5px;
         list-style-type: none;
+      }
+
+      #todoList {
+        position: relative;
+      }
+
+      #todoList li {
+        list-style: none;
+        padding-right: 40px;
+        position: relative;
+      }
+
+      #todoList button {
+        position: absolute;
+        top: 50%;
+        right: -50px;
+        transform: translateY(-50%);
       }
     </style>
   </head>
@@ -26,7 +45,7 @@
   <body>
     <div>
       <lebel>Todo text :</lebel>
-      <input id="todoTextBox" required />
+      <input id="todoTextBox" placeholder="Enter your text" required />
       <button onclick="saveItem()">Save</button><br />
     </div>
 
@@ -40,6 +59,7 @@
     <div>
       <button onclick="removeSelectedItem()">Remove Selected</button>
       <button id="selectButtonID" onclick="selectAllItem()">Select All</button>
+      <button onclick="showCompletedTask()">Completed Task</button>
     </div>
 
     <script src="index.js"></script>

@@ -23,20 +23,46 @@ function saveItem () {
 function addList(value) {
     var ul = document.getElementById("todoList");
     var li = document.createElement("li");         // Creating list item
+
+    const button = document.createElement("button");
+    button.innerHTML = 'Incomplete';
+    button.id = "buttonIsCompleted";
+
     li.appendChild(document.createTextNode(value));
-    // 
+    li.appendChild(button);
     ul.appendChild(li);
 }
 
 // Selected Item - Hover
 function selectItem(event) {
-    console.log(event.target.innerText);
+
+    if(event.target.id == "buttonIsCompleted"){
+        clickedIsCompletedButton(event);
+        return ;
+    }
+    console.log(event.target.id);
     if(event.target.value == undefined) return ;
 
     if(event.target.value == 0) {
         event.target.style.backgroundColor = "lightBlue";
     } else {
         event.target.style.backgroundColor = "rgb(225, 205, 176)";
+    }
+    event.target.value ^= 1;
+}
+
+// Select IsCompleted Button
+function clickedIsCompletedButton(event) {
+    console.log("Is Completed");
+
+    console.log(event.target.value);
+
+    if(event.target.value == 0) {
+        event.target.innerHTML = "Completed";
+        event.target.style.backgroundColor = "lightGreen";
+    } else {
+        event.target.innerHTML = "Incomplete";
+        event.target.style.backgroundColor = "";
     }
     event.target.value ^= 1;
 }
@@ -91,5 +117,17 @@ function unselectAllItems() {
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 0;
         items[i].style.backgroundColor = "rgb(225, 205, 176)";
+    }
+}
+
+// Show All Completed Task
+function showCompletedTask() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=items.length-1; i>=0; i--){
+        if(items[i].querySelector("button").innerHTML == "Incomplete") {
+            items[i].style.display = "none";
+        }
     }
 }
