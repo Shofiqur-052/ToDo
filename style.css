@@ -15,7 +15,7 @@ body {
 #todoList li {
     background-color: rgb(168, 196, 224);
     padding-left: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     list-style-type: none;
     border-radius: 2px;
 
@@ -26,6 +26,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 75%;
 }
 
 #buttonIsCompleted {
@@ -39,9 +40,19 @@ body {
 #deleteBtnID {
     position: absolute;
     top: 50%;
-    right: -10%;
+    right: -22%;
     transform: translateY(-50%);
     height: 30px;
+    width: 55px;
+}
+
+#editBtnID {
+    position: absolute;
+    top: 50%;
+    right: -11%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 55px;
 }
 
 #saveButtonID {
@@ -49,7 +60,11 @@ body {
     width: 80px;
 }
 
-input {
+.optionSectionID button {
+    width: 120px;
+}
+
+#todoTextBox {
     width: 500px;
     height: 35px;
     margin-left: 10px;
@@ -59,9 +74,25 @@ input {
     margin-top: 32px;
     margin-bottom: 14px;
 }
+
+#inputEditID {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    height: 28px;
+    width: 625px;
+
+    border-radius: 2pt;
+    border-color: cornflowerblue;
+    border-width: 1pt;
+}
+
+
 button {
     height: 35px;
     border-radius: 4px;
     border-width: 1pt;
     border-color: cornflowerblue;
 }
+
