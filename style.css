@@ -40,7 +40,7 @@ body {
 #deleteBtnID {
     position: absolute;
     top: 50%;
-    right: -22%;
+    right: -24%;
     transform: translateY(-50%);
     height: 30px;
     width: 55px;
@@ -49,7 +49,7 @@ body {
 #editBtnID {
     position: absolute;
     top: 50%;
-    right: -11%;
+    right: -12%;
     transform: translateY(-50%);
     height: 30px;
     width: 55px;
@@ -58,6 +58,7 @@ body {
 #saveButtonID {
     margin-left: 10px;
     width: 80px;
+    background-color: lightgreen;
 }
 
 .optionSectionID button {
@@ -81,7 +82,7 @@ body {
     left: 0px;
     transform: translateY(-50%);
     height: 28px;
-    width: 625px;
+    width: 521px;
 
     border-radius: 2pt;
     border-color: cornflowerblue;

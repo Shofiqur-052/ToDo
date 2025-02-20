@@ -30,7 +30,7 @@ function addList(value) {
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = 'Delete';
     deleteBtn.id = "deleteBtnID";
-    deleteBtn.style.backgroundColor = ""
+    deleteBtn.style.backgroundColor = "rgb(255, 147, 147)";
 
     const button = document.createElement("button");
     button.innerHTML = 'Incomplete';
@@ -39,6 +39,7 @@ function addList(value) {
     const editBtn = document.createElement("button");
     editBtn.innerHTML = "Edit";
     editBtn.id = "editBtnID";
+    editBtn.style.backgroundColor = "rgb(138, 197, 255)";
 
     li.appendChild(document.createTextNode(value));
     li.appendChild(button);
@@ -77,10 +78,17 @@ function editTextOnListItem(event) {
     input.id = "inputEditID";
     input.value = evt.firstChild.nodeValue.trim();
 
+    input.addEventListener("keypress", function(eventGot){
+        if(eventGot.key == "Enter"){
+            saveTextOnListItem(event);
+            return ;
+        }
+    });
     let firstChild = evt.firstChild;
     evt.insertBefore(input, firstChild);
 
     event.target.innerHTML = "Save";
+    event.target.style.backgroundColor = "lightGreen";
     evt.querySelector('#buttonIsCompleted').style.display = "none";
 }
 
@@ -95,6 +103,7 @@ function saveTextOnListItem(event) {
     evt.querySelector('#inputEditID').remove();
     evt.firstChild.nodeValue = inputValue;
     event.target.innerHTML = "Edit";
+    event.target.style.backgroundColor = "rgb(138, 197, 255)";
 }
 
 // Selected Item - Hover
@@ -233,3 +242,5 @@ function resetButtonHover(buttonID) {
     if(buttonID == "showAllBtnID") showAllBtn.style.backgroundColor = "lightBlue";
     if(buttonID == "clearCompletedBtnID") clearCompletedBtn.style.backgroundColor = "lightBlue";
 }
+
+// #FF6366
