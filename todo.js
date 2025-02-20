@@ -16,6 +16,7 @@ function saveItem () {
         alert("Empty Field :(");
         return ;
     }
+    showAllTask();
     addList(value);
 }
 
@@ -26,12 +27,17 @@ function addList(value) {
 
     console.log(ul);
 
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = 'Delete';
+    deleteBtn.id = "deleteBtnID";
+
     const button = document.createElement("button");
     button.innerHTML = 'Incomplete';
     button.id = "buttonIsCompleted";
 
     li.appendChild(document.createTextNode(value));
     li.appendChild(button);
+    li.appendChild(deleteBtn);
     ul.appendChild(li);
 }
 
@@ -40,6 +46,10 @@ function selectItem(event) {
 
     if(event.target.id == "buttonIsCompleted"){
         clickedIsCompletedButton(event);
+        return ;
+    }
+    if(event.target.id == "deleteBtnID") {
+        clickedSingleDeleteButton(event);
         return ;
     }
     console.log(event.target.id);
@@ -51,6 +61,11 @@ function selectItem(event) {
         event.target.style.backgroundColor = "rgb(168, 196, 224)";
     }
     event.target.value ^= 1;
+}
+
+// Delete single selected item
+function clickedSingleDeleteButton(event) {
+    event.target.closest('li').remove();
 }
 
 // Select IsCompleted Button
@@ -65,22 +80,9 @@ function clickedIsCompletedButton(event) {
     event.target.value ^= 1;
 }
 
-// Remove Selected Items
-function removeSelectedItem() {
-    let ul = document.getElementById("todoList");
-    let items = ul.getElementsByTagName("li");
-
-    for(let i=items.length-1; i>=0; i--){
-        if(items[i].value == 1){
-            items[i].remove();
-        }
-    }
-    selectedButtonDefaultState();
-}
-
 // Default state of 'selected all' button
 function selectedButtonDefaultState() {
-    let button = document.getElementById("selectButtonID");
+    let button = document.getElementById("selectBtnID");
     button.innerText = "Select All";
     button.value = 0;
 }
@@ -90,13 +92,14 @@ function selectAllItem() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
 
+    resetButtonHover("selectBtnID");
     if(items.length == 0) return ;
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 1;
         items[i].style.backgroundColor = "lightGreen";
     }
-    let button = document.getElementById("selectButtonID");
+    let button = document.getElementById("selectBtnID");
     button.value ^= 1;
     
     if(button.value == 1){
@@ -111,13 +114,27 @@ function selectAllItem() {
 function unselectAllItems() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
-    let button = document.getElementById("selectButtonID");
+    let button = document.getElementById("selectBtnID");
     button.innerText = "Select All";
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 0;
         items[i].style.backgroundColor = "rgb(168, 196, 224)";
     }
+}
+
+// Remove Selected Items
+function removeSelectedItem() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=items.length-1; i>=0; i--){
+        if(items[i].value == 1){
+            items[i].remove();
+        }
+    }
+    selectedButtonDefaultState();
+    resetButtonHover("removeSelectedBtnID");
 }
 
 // Show All Completed Task
@@ -133,6 +150,7 @@ function showCompletedTask() {
         }
     }
     unselectAllItems();
+    resetButtonHover("completedTaskBtnID");
 }
 
 // Show All Remaining Task
@@ -148,6 +166,7 @@ function showRemainingTask() {
         }
     }
     unselectAllItems();
+    resetButtonHover("remainingTaskBtnID");
 }
 
 // Show All Task
@@ -159,10 +178,11 @@ function showAllTask() {
         items[i].style.display = ""
     }
     unselectAllItems();
+    resetButtonHover("showAllBtnID");
 }
 
 // Delete Completed Task
-function deleteCompletedTask() {
+function clearCompletedTask() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
 
@@ -172,4 +192,29 @@ function deleteCompletedTask() {
         }
     }
     unselectAllItems();
+    resetButtonHover("clearCompletedBtnID");
+}
+
+// Reset Button Hover effect
+function resetButtonHover(buttonID) {
+    let selectAllBtn = document.getElementById("selectBtnID");
+    let removeSelectedBtn = document.getElementById("removeSelectedBtnID");
+    let completedTaskBtn = document.getElementById("completedTaskBtnID");
+    let remainingTaskBtn = document.getElementById("remainingTaskBtnID");
+    let showAllBtn = document.getElementById("showAllBtnID");
+    let clearCompletedBtn = document.getElementById("clearCompletedBtnID");
+
+    selectAllBtn.style.backgroundColor = "";
+    removeSelectedBtn.style.backgroundColor = "";
+    completedTaskBtn.style.backgroundColor = "";
+    remainingTaskBtn.style.backgroundColor = "";
+    showAllBtn.style.backgroundColor = "";
+    clearCompletedBtn.style.backgroundColor = "";
+
+    if(buttonID == "selectBtnID") selectAllBtn.style.backgroundColor = "lightBlue";
+    if(buttonID == "removeSelectedBtnID") removeSelectedBtn.style.backgroundColor = "lightBlue";
+    if(buttonID == "completedTaskBtnID") completedTaskBtn.style.backgroundColor = "lightBlue";
+    if(buttonID == "remainingTaskBtnID") remainingTaskBtn.style.backgroundColor = "lightBlue";
+    if(buttonID == "showAllBtnID") showAllBtn.style.backgroundColor = "lightBlue";
+    if(buttonID == "clearCompletedBtnID") clearCompletedBtn.style.backgroundColor = "lightBlue";
 }

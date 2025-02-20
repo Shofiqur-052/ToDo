@@ -28,13 +28,22 @@ body {
     align-items: center;
 }
 
-#todoList button {
+#buttonIsCompleted {
     position: absolute;
     top: 50%;
     right: 0px;
     transform: translateY(-50%);
     height: 30px;
 }
+
+#deleteBtnID {
+    position: absolute;
+    top: 50%;
+    right: -10%;
+    transform: translateY(-50%);
+    height: 30px;
+}
+
 input {
     width: 500px;
     height: 35px;
