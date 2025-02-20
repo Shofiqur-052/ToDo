@@ -41,13 +41,8 @@ function addList(value) {
     ul.appendChild(li);
 }
 
-// Selected Item - Hover
-function selectItem(event) {
-
-    if(event.target.id == "buttonIsCompleted"){
-        clickedIsCompletedButton(event);
-        return ;
-    }
+// Check Event Items
+function selectItemEventCheck(event) {
     if(event.target.id == "deleteBtnID") {
         clickedSingleDeleteButton(event);
         return ;
@@ -55,29 +50,29 @@ function selectItem(event) {
     console.log(event.target.id);
     if(event.target.value == undefined) return ;
 
-    if(event.target.value == 0) {
-        event.target.style.backgroundColor = "lightGreen";
+    let evt = event.target.closest('li');
+    selectItem(evt);
+}
+
+// Selected Item - Hover
+function selectItem(evt) {
+    let evtButton = evt.querySelector('#buttonIsCompleted');
+
+    if(evt.value == 0) {
+        evt.style.backgroundColor = "lightGreen";
+        evtButton.style.backgroundColor = "lightGreen";
+        evtButton.innerText = "Completed";
     } else {
-        event.target.style.backgroundColor = "rgb(168, 196, 224)";
+        evt.style.backgroundColor = "";
+        evtButton.style.backgroundColor = "";
+        evtButton.innerText = "Incomplete";
     }
-    event.target.value ^= 1;
+    evt.value ^= 1;
 }
 
 // Delete single selected item
 function clickedSingleDeleteButton(event) {
     event.target.closest('li').remove();
-}
-
-// Select IsCompleted Button
-function clickedIsCompletedButton(event) {
-    if(event.target.value == 0) {
-        event.target.innerHTML = "Completed";
-        event.target.style.backgroundColor = "lightGreen";
-    } else {
-        event.target.innerHTML = "Incomplete";
-        event.target.style.backgroundColor = "";
-    }
-    event.target.value ^= 1;
 }
 
 // Default state of 'selected all' button
@@ -96,8 +91,8 @@ function selectAllItem() {
     if(items.length == 0) return ;
 
     for(let i=items.length-1; i>=0; i--){
-        items[i].value = 1;
-        items[i].style.backgroundColor = "lightGreen";
+        items[i].value = 0;
+        selectItem(items[i]);
     }
     let button = document.getElementById("selectBtnID");
     button.value ^= 1;
@@ -115,11 +110,10 @@ function unselectAllItems() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
     let button = document.getElementById("selectBtnID");
-    button.innerText = "Select All";
 
     for(let i=items.length-1; i>=0; i--){
-        items[i].value = 0;
-        items[i].style.backgroundColor = "rgb(168, 196, 224)";
+        items[i].value = 1;
+        selectItem(items[i]);
     }
 }
 

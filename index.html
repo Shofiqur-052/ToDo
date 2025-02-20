@@ -8,23 +8,31 @@
   </head>
 
   <body>
-    <div style="word-spacing: 5px">
+    <div class="optionSectionID" style="word-spacing: 5px">
       <button id="selectBtnID" onclick="selectAllItem()">Select All</button>
-      <button id="removeSelectedBtnID" onclick="removeSelectedItem()">Remove Selected</button>
-      <button id="completedTaskBtnID" onclick="showCompletedTask()">Completed Task</button>
-      <button id="remainingTaskBtnID" onclick="showRemainingTask()">Remaining Task</button>
+      <button id="removeSelectedBtnID" onclick="removeSelectedItem()">
+        Remove Selected
+      </button>
+      <button id="completedTaskBtnID" onclick="showCompletedTask()">
+        Completed Task
+      </button>
+      <button id="remainingTaskBtnID" onclick="showRemainingTask()">
+        Remaining Task
+      </button>
       <button id="showAllBtnID" onclick="showAllTask()">Show All</button>
-      <button id="clearCompletedBtnID" onclick="clearCompletedTask()">Clear Completed</button>
+      <button id="clearCompletedBtnID" onclick="clearCompletedTask()">
+        Clear Completed
+      </button>
     </div>
 
     <div>
       <lebel style="color: whitesmoke">Note :</lebel>
       <input id="todoTextBox" placeholder="Enter your text" required />
-      <button onclick="saveItem()">Save</button><br />
+      <button id="saveButtonID" onclick="saveItem()">Save</button><br />
     </div>
 
     <div>
-      <ul id="todoList" onclick="selectItem(event)">
+      <ul id="todoList" onclick="selectItemEventCheck(event)">
         <!-- <li>Just test</li> -->
       </ul>
     </div>
