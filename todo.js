@@ -95,7 +95,6 @@ function saveTextOnListItem(event) {
     evt.querySelector('#inputEditID').remove();
     evt.firstChild.nodeValue = inputValue;
     event.target.innerHTML = "Edit";
-
 }
 
 // Selected Item - Hover
@@ -153,27 +152,12 @@ function selectAllItem() {
 function unselectAllItems() {
     let ul = document.getElementById("todoList");
     let items = ul.getElementsByTagName("li");
-    // let button = document.getElementById("selectBtnID");
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 1;
         selectItem(items[i]);
     }
 }
-
-// // Remove Selected Items
-// function removeSelectedItem() {
-//     let ul = document.getElementById("todoList");
-//     let items = ul.getElementsByTagName("li");
-
-//     for(let i=items.length-1; i>=0; i--){
-//         if(items[i].value == 1){
-//             items[i].remove();
-//         }
-//     }
-//     selectedButtonDefaultState();
-//     resetButtonHover("removeSelectedBtnID");
-// }
 
 // Show All Completed Task
 function showCompletedTask() {
@@ -187,7 +171,6 @@ function showCompletedTask() {
             items[i].style.display = "";
         }
     }
-    // unselectAllItems();
     resetButtonHover("completedTaskBtnID");
 }
 
@@ -203,7 +186,6 @@ function showRemainingTask() {
             items[i].style.display = "none";
         }
     }
-    // unselectAllItems();
     resetButtonHover("remainingTaskBtnID");
 }
 
@@ -215,7 +197,6 @@ function showAllTask() {
     for(let i=items.length-1; i>=0; i--){
         items[i].style.display = ""
     }
-    // unselectAllItems();
     resetButtonHover("showAllBtnID");
 }
 
@@ -229,28 +210,24 @@ function clearCompletedTask() {
             items[i].remove();
         }
     }
-    // unselectAllItems();
     resetButtonHover("clearCompletedBtnID");
 }
 
 // Reset Button Hover effect
 function resetButtonHover(buttonID) {
     let selectAllBtn = document.getElementById("selectBtnID");
-    // let removeSelectedBtn = document.getElementById("removeSelectedBtnID");
     let completedTaskBtn = document.getElementById("completedTaskBtnID");
     let remainingTaskBtn = document.getElementById("remainingTaskBtnID");
     let showAllBtn = document.getElementById("showAllBtnID");
     let clearCompletedBtn = document.getElementById("clearCompletedBtnID");
 
     selectAllBtn.style.backgroundColor = "";
-    // removeSelectedBtn.style.backgroundColor = "";
     completedTaskBtn.style.backgroundColor = "";
     remainingTaskBtn.style.backgroundColor = "";
     showAllBtn.style.backgroundColor = "";
     clearCompletedBtn.style.backgroundColor = "";
 
     if(buttonID == "selectBtnID") selectAllBtn.style.backgroundColor = "lightBlue";
-    // if(buttonID == "removeSelectedBtnID") removeSelectedBtn.style.backgroundColor = "lightBlue";
     if(buttonID == "completedTaskBtnID") completedTaskBtn.style.backgroundColor = "lightBlue";
     if(buttonID == "remainingTaskBtnID") remainingTaskBtn.style.backgroundColor = "lightBlue";
     if(buttonID == "showAllBtnID") showAllBtn.style.backgroundColor = "lightBlue";
