@@ -50,6 +50,7 @@ function addList(value) {
 
 // Check Event Items
 function selectItemEventCheck(event) {
+
     if(event.target.id == "deleteBtnID") {
         clickedSingleDeleteButton(event);
         return ;
@@ -68,6 +69,31 @@ function selectItemEventCheck(event) {
 
     let evt = event.target.closest('li');
     selectItem(evt);
+
+    let buttonSlt = document.getElementById("selectBtnID");
+    if(checkAllSelected()==true){
+        buttonSlt.value = 1;
+        buttonSlt.innerText = "Unselect All";
+    } else {
+        buttonSlt.value = 0;
+        buttonSlt.innerText = "Select All";
+    }
+}
+
+// Check all items are selected or not
+function checkAllSelected() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    if(items.length == 0) return false;
+    let cnt = 0;
+
+    for(let i=0; i<items.length; i++){
+        cnt+=items[i].value;
+    }
+    console.log(cnt);
+    if(cnt == items.length) return true;
+    else return false;
 }
 
 // Edit Text on List Item
@@ -144,6 +170,7 @@ function selectAllItem() {
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 0;
+        items[i].style.display = "";
         selectItem(items[i]);
     }
     let button = document.getElementById("selectBtnID");
@@ -164,6 +191,7 @@ function unselectAllItems() {
 
     for(let i=items.length-1; i>=0; i--){
         items[i].value = 1;
+        items[i].style.display = "";
         selectItem(items[i]);
     }
 }
@@ -243,4 +271,3 @@ function resetButtonHover(buttonID) {
     if(buttonID == "clearCompletedBtnID") clearCompletedBtn.style.backgroundColor = "lightBlue";
 }
 
-// #FF6366
