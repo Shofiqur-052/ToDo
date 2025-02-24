@@ -51,12 +51,6 @@ function addList(value) {
 // Check Event Items
 function selectItemEventCheck(event) {
 
-    if(event.target.id == "deleteBtnID") {
-        clickedSingleDeleteButton(event);
-        return ;
-    }
-    if(event.target.id == "inputEditID") return ;
-
     if(event.target.id == "editBtnID") {
         if(event.target.textContent == "Edit"){
             editTextOnListItem(event);
@@ -65,11 +59,24 @@ function selectItemEventCheck(event) {
         }
         return ;
     }
+    if(event.target.id == "inputEditID") return ;
+
+    saveTextDefaultAllItems();
+
+    if(event.target.id == "deleteBtnID") {
+        clickedSingleDeleteButton(event);
+        return ;
+    }
     if(event.target.value == undefined) return ;
 
     let evt = event.target.closest('li');
     selectItem(evt);
+    SelectUnseletButtonFlip();
+}
 
+// SelectUnseletButtonFlip()
+
+function SelectUnseletButtonFlip() {
     let buttonSlt = document.getElementById("selectBtnID");
     if(checkAllSelected()==true){
         buttonSlt.value = 1;
@@ -91,7 +98,6 @@ function checkAllSelected() {
     for(let i=0; i<items.length; i++){
         cnt+=items[i].value;
     }
-    console.log(cnt);
     if(cnt == items.length) return true;
     else return false;
 }
@@ -132,6 +138,26 @@ function saveTextOnListItem(event) {
     event.target.style.backgroundColor = "rgb(138, 197, 255)";
 }
 
+// Save All editing text
+function saveTextDefaultAllItems() {
+    let ul = document.getElementById("todoList");
+    let items = ul.getElementsByTagName("li");
+
+    for(let i=0; i<items.length; i++){
+        let evt = items[i];
+        evt.querySelector('#buttonIsCompleted').style.display = "";
+        let evtRmv = evt.querySelector(`#inputEditID`);
+        if(evtRmv){
+            let inputValue = evt.querySelector('#inputEditID').value;
+            evtRmv.remove();
+            evt.firstChild.nodeValue = inputValue;
+        }
+        let buttonEdit = evt.querySelector('#editBtnID');
+        buttonEdit.innerHTML = "Edit";
+        buttonEdit.style.backgroundColor = "rgb(138, 197, 255)";
+    }
+}
+
 // Selected Item - Hover
 function selectItem(evt) {
     let evtButton = evt.querySelector('#buttonIsCompleted');
@@ -151,6 +177,7 @@ function selectItem(evt) {
 // Delete single selected item
 function clickedSingleDeleteButton(event) {
     event.target.closest('li').remove();
+    SelectUnseletButtonFlip();
 }
 
 // Default state of 'selected all' button
@@ -248,10 +275,13 @@ function clearCompletedTask() {
         }
     }
     resetButtonHover("clearCompletedBtnID");
+    SelectUnseletButtonFlip();
 }
 
 // Reset Button Hover effect
 function resetButtonHover(buttonID) {
+    saveTextDefaultAllItems();
+
     let selectAllBtn = document.getElementById("selectBtnID");
     let completedTaskBtn = document.getElementById("completedTaskBtnID");
     let remainingTaskBtn = document.getElementById("remainingTaskBtnID");
